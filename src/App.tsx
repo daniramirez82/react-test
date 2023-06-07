@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
-import { type User } from './types.d'
+import { type User, SortBy } from './types.d'
 import UserList from './components/UserList'
 
 function App() {
   const [users, setUsers] = useState<Array<User>>([])
   const [colorLines, setColorLines] = useState(false)
-  const [sortingUsers, setSortingtUser] = useState(false);
+  const [sorting, setSorting] = useState<SortBy>(SortBy.NONE);
   const [filterCountry, setFilterCountry] = useState("");
+  const [page, setPage] = useState(1)
 
   const originalUsers = useRef(users);
 
@@ -15,8 +16,8 @@ function App() {
     setColorLines(!colorLines)
   }
 
-  const handleSortUsers = () => {
-    setSortingtUser(!sortingUsers);
+  const handleSorting = (sort: SortBy) => {
+    setSorting(sort);
   }
 
   const handleEraseLine = (id: string) => {
@@ -29,11 +30,16 @@ function App() {
   }
 
   const sortedUsers = useMemo (() => {
-    console.log("sorting data")
-    return sortingUsers ?
-      users.toSorted((a, b) => a.location.country.localeCompare(b.location.country))
-      : users
-  },[sortingUsers, users])
+    switch( sorting){
+      case SortBy.NONE: users
+      case SortBy.NAME:
+        return users.toSorted((a,b) => a.name.first.localeCompare(b.name.first))
+      case SortBy.LAST:
+        return users.toSorted((a,b) => a.name.last.localeCompare(b.name.last))
+      case SortBy.COUNTRY:
+        return users.toSorted((a, b) => a.location.country.localeCompare(b.location.country))   
+    } 
+  },[sorting, users])
 
   const filteredUsers = (
     ()=>{
@@ -45,29 +51,33 @@ function App() {
   )()
 
   useEffect(() => {
-    fetch('https://randomuser.me/api?results=100')
+    fetch(`https://randomuser.me/api?page=${page}&results=10&seed=marlyn`)
       .then(async res => await res.json())
       .then(res => {
-        setUsers(res.results)
-        originalUsers.current = res.results
+        setUsers(prevUsers =>{
+          const newUsers = prevUsers.concat(res.results);
+          originalUsers.current = newUsers
+          return newUsers;
+        })
       })
       .catch(err => {
         console.error(err)
       })
-  }, [])
+  }, [page])
 
   return (
     <div className='w-full'>
       <h1 className='bg-slate-900'> Prueba tecnica</h1>
       <div className=' flex gap-4 p-4 '>
         <button className='bg-slate-400 text-slate-900 p-3 rounded-lg' onClick={handleColorChange}>Colorear</button>
-        <button className='bg-slate-400 text-slate-900 p-3 rounded-lg' onClick={handleSortUsers}>{sortingUsers ? "Desordenar" : "Ordenar"}</button>
+        <button className='bg-slate-400 text-slate-900 p-3 rounded-lg' onClick={()=> handleSorting(SortBy.COUNTRY)}>{sorting === SortBy.COUNTRY ? "Desordenar" : "Ordenar"}</button>
         <button className='bg-slate-400 text-slate-900 p-3 rounded-lg' onClick={handleResetUsers}>Reset Users</button>
         <input className='text-black' type="text" onChange={(e)=>{setFilterCountry(e.target.value)}} value={filterCountry} />
 
       </div>
 
-      <UserList users={filteredUsers} colorLines={colorLines} handleEraseLine={handleEraseLine} />
+      <UserList changeSorting ={handleSorting} users={filteredUsers} colorLines={colorLines} handleEraseLine={handleEraseLine} />
+      <button onClick={()=> setPage(page+1)}>Cargar mas</button>
 
     </div>
   )

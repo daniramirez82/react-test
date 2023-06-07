@@ -1,21 +1,22 @@
-import { type User } from '../types.d'
+import { SortBy, type User } from '../types.d'
 
 interface Props {
+    changeSorting: (sort: SortBy) => void
     handleEraseLine: (id: string) => void
     colorLines: boolean
     users: User[]
 }
 
-const UserList = ({ users, colorLines, handleEraseLine }: Props) => {
+const UserList = ({ users, colorLines, handleEraseLine, changeSorting }: Props) => {
 
     return (
         < table className='w-full' >
             <thead className='bg-slate-800'>
                 <tr className='p-10'>
                     <td>Foto</td>
-                    <td>Nombre</td>
-                    <td>Apellido</td>
-                    <td>Pais</td>
+                    <td className='cursor-pointer' onClick = { ()=> changeSorting(SortBy.NAME)}>Nombre</td>
+                    <td className='cursor-pointer' onClick = { ()=> changeSorting(SortBy.LAST)}>Apellido</td>
+                    <td className='cursor-pointer' onClick = { ()=> changeSorting(SortBy.COUNTRY)}>Pais</td>
                     <td>Acciones</td>
                 </tr>
             </thead>
