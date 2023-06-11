@@ -66,7 +66,7 @@ function App() {
   }, [page])
 
   return (
-    <div className='w-full'>
+    <div className='w-full container m-auto'>
       <h1 className='bg-slate-900'> Prueba tecnica</h1>
       <div className=' flex gap-4 p-4 '>
         <button className='bg-slate-400 text-slate-900 p-3 rounded-lg' onClick={handleColorChange}>Colorear</button>
