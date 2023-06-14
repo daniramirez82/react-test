@@ -29,6 +29,7 @@ declare global {
     id: ID
     picture: Picture
     nat: string
+    toSorted(compareFn?: (a: T, b: T) => number): T[]
   }
   
   export interface Dob {
