@@ -1,7 +1,7 @@
 const delay = async (ms: number) => await new Promise(resolve => setTimeout(resolve, ms))
 
 export const getUsers = async ({ pageParam = 1 }: { pageParam?: number }) => {
-  await delay(300)
+  await delay(500)
 
   return await fetch(`https://randomuser.me/api?results=10&seed=midudev&page=${pageParam}`)
     .then(async res => {

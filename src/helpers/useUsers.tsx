@@ -23,5 +23,8 @@ export const useUsers = () => {
     users: data?.pages.flatMap((page) => page?.users) ?? [],
     fetchNextPage,
     hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+    status,
   };
 };
