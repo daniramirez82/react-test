@@ -5,11 +5,13 @@ import UserList from "./components/UserList";
 import Loader from "./components/Loader";
 import { useUsers } from "./helpers/useUsers";
 import Header from "./components/Header";
+import Button from "./components/Button";
 
 function App() {
   const [colorLines, setColorLines] = useState(false);
   const [sorting, setSorting] = useState<SortBy>(SortBy.NONE);
   const [filterCountry, setFilterCountry] = useState("");
+  const [asending, setAsending] = useState<boolean>(false);
   const [page, setPage] = useState(1);
   const {
     isLoading,
@@ -23,14 +25,13 @@ function App() {
   } = useUsers();
   const originalUsers = useRef(users);
 
-  console.log(status, "isFetching---->", isFetching);
+  const handleSorting = (sort: SortBy, asending: boolean) => {
+    setSorting(sort);
+    setAsending(asending);
+  };
 
   const handleColorChange = () => {
     setColorLines(!colorLines);
-  };
-
-  const handleSorting = (sort: SortBy) => {
-    setSorting(sort);
   };
 
   const handleEraseLine = (id: string) => {
@@ -42,25 +43,35 @@ function App() {
     // setUsers(originalUsers.current);
   };
 
-  const getSortedUsers = (sorting: SortBy, users: User[]) => {
+  const getSortedUsers = (
+    sorting: SortBy,
+    users: User[],
+    asending: boolean
+  ) => {
+    let sorted: User[];
     switch (sorting) {
       case SortBy.NAME:
-        return users.toSorted((a, b) =>
+        sorted = users.toSorted((a, b) =>
           a.name.first.localeCompare(b.name.first)
         );
+        return asending ? sorted : sorted.reverse();
       case SortBy.LAST:
-        return users.toSorted((a, b) => a.name.last.localeCompare(b.name.last));
+        sorted = users.toSorted((a, b) =>
+          a.name.last.localeCompare(b.name.last)
+        );
+        return asending ? sorted : sorted.reverse();
       case SortBy.COUNTRY:
-        return users.toSorted((a, b) =>
+        sorted = users.toSorted((a, b) =>
           a.location.country.localeCompare(b.location.country)
         );
+        return asending ? sorted : sorted.reverse();
       default:
         return users;
     }
   };
 
   const sortedUsers = useMemo(
-    () => getSortedUsers(sorting, users),
+    () => getSortedUsers(sorting, users, asending),
     [sorting, users]
   );
 
@@ -102,14 +113,12 @@ function App() {
             <Loader />
           </div>
         )}
-        {hasNextPage && (
-          <button
-            className="p-3 rounded-lg m-4 bg-indigo-900"
-            onClick={() => fetchNextPage()}
-          >
-            Cargar mas
-          </button> //TODO make a state for the buttos be clicked or unselected
-        )}
+        {
+          hasNextPage && (
+            <Button label="Cargar mas" handleClick={() => fetchNextPage()} />
+          )
+          //TODO make a state for the buttons be clicked or unselected
+        }
       </div>
     </>
   );

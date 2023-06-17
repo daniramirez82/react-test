@@ -1,4 +1,5 @@
 import { SortBy } from "../types.d";
+import Button from "./Button";
 
 interface HeaderProps {
     handleColorChange: () => void;
@@ -14,24 +15,9 @@ const Header = ({handleColorChange, handleSorting, sorting, handleResetUsers, se
     <div className="w-full container m-auto">
       <h1 className="bg-slate-900"> Prueba tecnica</h1>
       <div className=" flex gap-4 p-4 ">
-        <button
-          className="bg-slate-400 text-slate-900 p-3 rounded-lg"
-          onClick={handleColorChange}
-        >
-          Colorear
-        </button>
-        <button
-          className="bg-slate-400 text-slate-900 p-3 rounded-lg"
-          onClick={() => handleSorting(SortBy.COUNTRY)}
-        >
-          {sorting === SortBy.COUNTRY ? "Desordenar" : "Ordenar"}
-        </button>
-        <button
-          className="bg-slate-400 text-slate-900 p-3 rounded-lg"
-          onClick={handleResetUsers}
-        >
-          Reset Users
-        </button>
+        <Button handleClick={handleColorChange} label="Colorear"/>
+        <Button handleClick={() => handleSorting(SortBy.COUNTRY)} label={sorting === SortBy.COUNTRY ? "Desordenar" : "Ordenar"}/>
+        <Button handleClick={handleResetUsers} label={"Reset Users"}/>
         <input
           className="text-black"
           type="text"
