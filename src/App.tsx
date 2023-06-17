@@ -6,13 +6,14 @@ import Loader from "./components/Loader";
 import { useUsers } from "./helpers/useUsers";
 import Header from "./components/Header";
 import Button from "./components/Button";
+import { useSelector, useDispatch } from "react-redux";
+import type { RootState } from "./store";
 
 function App() {
   const [colorLines, setColorLines] = useState(false);
   const [sorting, setSorting] = useState<SortBy>(SortBy.NONE);
   const [filterCountry, setFilterCountry] = useState("");
   const [asending, setAsending] = useState<boolean>(false);
-  const [page, setPage] = useState(1);
   const {
     isLoading,
     error,
@@ -23,11 +24,12 @@ function App() {
     isFetchingNextPage,
     status,
   } = useUsers();
+  const sortOrder = useSelector((state: RootState) => state.sortOrder);
+
   const originalUsers = useRef(users);
 
-  const handleSorting = (sort: SortBy, asending: boolean) => {
+  const handleSorting = (sort: SortBy) => {
     setSorting(sort);
-    setAsending(asending);
   };
 
   const handleColorChange = () => {
@@ -71,7 +73,7 @@ function App() {
   };
 
   const sortedUsers = useMemo(
-    () => getSortedUsers(sorting, users, asending),
+    () => getSortedUsers(sorting, users, sortOrder[sorting]),
     [sorting, users]
   );
 

@@ -1,9 +1,10 @@
-import { useState } from "react";
-import { SortBy, type User } from "../types.d";
+import React, { useState } from "react";
+import { SortBy, User } from "../types.d";
 import Button from "./Button";
+import TableHeaderCell from "./TableHeaderCell";
 
 interface Props {
-  changeSorting: (sort: SortBy, asending: boolean) => void;
+  changeSorting: (sort: SortBy) => void;
   handleEraseLine: (id: string) => void;
   colorLines: boolean;
   users: User[];
@@ -15,27 +16,8 @@ const UserList = ({
   handleEraseLine,
   changeSorting,
 }: Props) => {
-  const [asendingName, setAsendingName] = useState<boolean>(false);
-  const [asendingLast, setAsendingLast] = useState<boolean>(false);
-  const [asendingCountry, setAsendingCountry] = useState<boolean>(false);
-
   const handleClick = (sort: SortBy) => {
-    let asending: boolean = false;
-    switch (sort) {
-      case SortBy.NAME:
-        asending = !asendingName;
-        setAsendingName(!asendingName);
-        break;
-      case SortBy.LAST:
-        asending = !asendingLast;
-        setAsendingLast(!asendingLast);
-        break;
-      case SortBy.COUNTRY:
-        asending = !asendingCountry;
-        setAsendingCountry(!asendingCountry);
-        break;
-    }
-    changeSorting(sort, asending);
+    changeSorting(sort);
   };
 
   return (
@@ -43,60 +25,45 @@ const UserList = ({
       <thead className="bg-slate-800">
         <tr className="p-10 h-12">
           <td>Foto</td>
-          <td
-            className="cursor-pointer flex"
-            onClick={() => handleClick(SortBy.NAME)}
-          >
-            <span>Nombre</span>
-            <div className={`p-1${!asendingName ? "bg-red-600 rotate-180" : ""}`}>
-              &darr;
-            </div>
+          <td>
+            <TableHeaderCell id={SortBy.NAME} changeSort={handleClick} />
           </td>
-          <td
-            className="cursor-pointer"
-            onClick={() => handleClick(SortBy.LAST)}
-          >
-            Apellido
+          <td>
+            <TableHeaderCell id={SortBy.LAST} changeSort={handleClick} />
           </td>
-          <td
-            className="cursor-pointer"
-            onClick={() => handleClick(SortBy.COUNTRY)}
-          >
-            Pais
+          <td>
+            <TableHeaderCell id={SortBy.COUNTRY} changeSort={handleClick} />
           </td>
+
           <td>Acciones</td>
         </tr>
       </thead>
       <tbody>
-        {users?.map((user) => {
-          return (
-            <tr
-              key={user.login.uuid}
-              className={`${
-                colorLines ? "odd:bg-gray-600 even:bg-gray-500" : ""
-              }`}
-            >
-              <td>
-                <img
-                  className="rounded-full"
-                  src={user.picture.thumbnail}
-                  alt={user.name.first}
-                />
-              </td>
-              <td>{user.name.first}</td>
-              <td>{user.name.last}</td>
-              <td>{user.location.country}</td>
-              <td>
-                <Button
-                  label="Borrar"
-                  handleClick={() => {
-                    handleEraseLine(user.login.uuid);
-                  }}
-                />
-              </td>
-            </tr>
-          );
-        })}
+        {users.map((user) => (
+          <tr
+            key={user.login.uuid}
+            className={`${
+              colorLines ? "odd:bg-gray-600 even:bg-gray-500" : ""
+            }`}
+          >
+            <td>
+              <img
+                className="rounded-full"
+                src={user.picture.thumbnail}
+                alt={user.name.first}
+              />
+            </td>
+            <td>{user.name.first}</td>
+            <td>{user.name.last}</td>
+            <td>{user.location.country}</td>
+            <td>
+              <Button
+                label="Borrar"
+                handleClick={() => handleEraseLine(user.login.uuid)}
+              />
+            </td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );
