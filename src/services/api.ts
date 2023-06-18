@@ -3,7 +3,7 @@ const delay = async (ms: number) => await new Promise(resolve => setTimeout(reso
 export const getUsers = async ({ pageParam = 1 }: { pageParam?: number }) => {
   await delay(500)
 
-  return await fetch(`https://randomuser.me/api?results=10&seed=midudev&page=${pageParam}`)
+  return await fetch(`https://randomuser.me/api?results=10&seed=federica&page=${pageParam}`)
     .then(async res => {
       if (!res.ok) throw new Error('Error en la petición')
       return await res.json()

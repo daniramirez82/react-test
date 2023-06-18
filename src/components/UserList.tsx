@@ -16,8 +16,10 @@ const UserList = ({
   handleEraseLine,
   changeSorting,
 }: Props) => {
+  const [sortBy, setSortBy] = useState<SortBy>(SortBy.NONE);
   const handleClick = (sort: SortBy) => {
     changeSorting(sort);
+    setSortBy(sort);
   };
 
   return (
@@ -26,13 +28,13 @@ const UserList = ({
         <tr className="p-10 h-12">
           <td>Foto</td>
           <td>
-            <TableHeaderCell id={SortBy.NAME} changeSort={handleClick} />
+            <TableHeaderCell id={SortBy.NAME} changeSort={handleClick} isActive={sortBy} />
           </td>
           <td>
-            <TableHeaderCell id={SortBy.LAST} changeSort={handleClick} />
+            <TableHeaderCell id={SortBy.LAST} changeSort={handleClick} isActive={sortBy} />
           </td>
           <td>
-            <TableHeaderCell id={SortBy.COUNTRY} changeSort={handleClick} />
+            <TableHeaderCell id={SortBy.COUNTRY} changeSort={handleClick} isActive={sortBy} />
           </td>
 
           <td>Acciones</td>

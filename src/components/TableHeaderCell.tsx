@@ -7,9 +7,10 @@ import type { RootState } from "../store";
 interface Props {
     id: SortBy,
     changeSort: (id:SortBy)=> void,
+    isActive: SortBy,
 }
 
-const TableHeaderCell = ({id, changeSort}: Props) => {
+const TableHeaderCell = ({id, changeSort, isActive}: Props) => {
   const showArrow = useRef(false);
   const sortOrder = useSelector((state: RootState) => state.sortOrder);
   const dispatch = useDispatch();
@@ -25,10 +26,10 @@ const TableHeaderCell = ({id, changeSort}: Props) => {
   };
 
   return (
-    <div className="cursor-pointer flex" onClick={handleCellClick}>
+    <div className={`cursor-pointer flex ${isActive ===id ? "bg-orange-800":""}`} onClick={handleCellClick}>
       <span>{id}</span>
       <div className={`p-1`}>
-        {showArrow.current &&  (
+        {showArrow.current && isActive === id && (
           <div className={`${!sortOrder[id] ? "bg-red-600 rotate-180" : ""}`}>
             &darr;
           </div>
