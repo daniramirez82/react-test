@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Button from "./components/Button";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "./store";
+import NewHeader from "./components/NewHeader";
 
 function App() {
   const [colorLines, setColorLines] = useState(false);
@@ -88,7 +89,8 @@ function App() {
   })();
 
   return (
-    <>
+    <div className="container m-auto">
+      <NewHeader/>
       <Header
         filterCountry={filterCountry}
         handleColorChange={handleColorChange}
@@ -122,7 +124,7 @@ function App() {
           //TODO make a state for the buttons be clicked or unselected
         }
       </div>
-    </>
+    </div>
   );
 }
 
