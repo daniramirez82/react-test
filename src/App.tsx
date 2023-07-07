@@ -9,7 +9,7 @@ import Button from "./components/Button";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "./store";
 import NewHeader from "./components/NewHeader";
-import MainContent from "./components/content/m"
+import MainContent from "./components/content/MainContent";
 
 function App() {
   const [colorLines, setColorLines] = useState(false);
@@ -125,7 +125,7 @@ function App() {
           )
           //TODO make a state for the buttons be clicked or unselected
         }
-      M</div>
+      MMain</div>
     </div>
   );
 }
