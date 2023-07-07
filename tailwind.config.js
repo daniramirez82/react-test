@@ -17,7 +17,9 @@ export default {
       'white': '#fefefe'
     },
     extend: {
-      
+      fontFamily: {
+        inter: ['"Inter"']
+      }
     }
   },
   plugins: []

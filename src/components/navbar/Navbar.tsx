@@ -3,7 +3,7 @@ const NavBar = () => {
   const items = ["home", "notification", "messages", "more"];
 
   return (
-    <div className="flex items-center bg-text-secondary">
+    <div className="flex items-center">
       {items.map((item) => {
         return <NavbarButton isSelected={false} name={item} key={item} />;
       })}

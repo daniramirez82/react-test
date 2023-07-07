@@ -9,6 +9,7 @@ import Button from "./components/Button";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "./store";
 import NewHeader from "./components/NewHeader";
+import MainContent from "./components/content/m"
 
 function App() {
   const [colorLines, setColorLines] = useState(false);
@@ -89,7 +90,7 @@ function App() {
   })();
 
   return (
-    <div className="container m-auto">
+    <div className="container m-auto font-inter">
       <NewHeader/>
       <Header
         filterCountry={filterCountry}
@@ -99,6 +100,7 @@ function App() {
         handleResetUsers={handleResetUsers}
         setFilterCountry={setFilterCountry}
       />
+      <MainContent/>
       <div className="relative">
         <UserList
           changeSorting={handleSorting}
@@ -123,7 +125,7 @@ function App() {
           )
           //TODO make a state for the buttons be clicked or unselected
         }
-      </div>
+      M</div>
     </div>
   );
 }

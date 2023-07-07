@@ -7,7 +7,7 @@ interface Props {
 }
 
 const MenuIcon = ({ name, color, size }: Props) => (
-  <svg className="bg-brand"  fill={color} width={size} height={size}>
+  <svg className=""  fill={color} width={size} height={size}>
     <use xlinkHref={`${Icons}#${name}`} />
   </svg>
 );
