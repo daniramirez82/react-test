@@ -91,7 +91,7 @@ function App() {
 
   return (
     <div className="container m-auto font-inter">
-      <NewHeader/>
+      <NewHeader />
       <Header
         filterCountry={filterCountry}
         handleColorChange={handleColorChange}
@@ -100,14 +100,18 @@ function App() {
         handleResetUsers={handleResetUsers}
         setFilterCountry={setFilterCountry}
       />
-      <MainContent/>
       <div className="relative">
-        <UserList
+        <MainContent
+          users={filteredUsers}
+          changeSorting={handleSorting}
+          colorLines={colorLines}
+        />
+        {/* <UserList
           changeSorting={handleSorting}
           users={filteredUsers}
           colorLines={colorLines}
           handleEraseLine={handleEraseLine}
-        />
+        /> */}
         {isLoading && (
           <div className="h-40 w-full p-9 flex justify-center items-center rounded-lg text-slate-950">
             <Loader />
@@ -125,7 +129,8 @@ function App() {
           )
           //TODO make a state for the buttons be clicked or unselected
         }
-      MMain</div>
+        MMain
+      </div>
     </div>
   );
 }
