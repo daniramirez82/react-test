@@ -14,7 +14,8 @@ export default {
       'text-optional': '#9FA8B5',
       'lines': '#A2BBB0',
       'brand': '#A0D8A9',
-      'white': '#fefefe'
+      'white': '#fefefe',
+      'bg-light': "#F3F5F7",
     },
     extend: {
       fontFamily: {

@@ -5,7 +5,7 @@ interface Props {
 const BreadCrumsItem = ({item}: Props)=>{
 
     return (
-        <div className={ `flex items-center justify-center px-6 ${item.isSelected ? "border-b-base" : ""}` }>
+        <div className={ `flex items-center justify-center px-4 ${item.isSelected ? "border-b-2 border-b-lines " : ""}` }>
             <div className="p-2">{item.item}</div>
         </div>
     )
