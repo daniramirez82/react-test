@@ -1,0 +1,29 @@
+.grid-container{
+    grid-template-columns: 120px 120px 120px 120px auto 300px;
+    grid-template-rows: auto 3px;
+    transition: 300ms;
+}
+
+.menu-item{
+    width: 130px;
+}
+
+.col-start-1{
+    grid-column: 1 / span 1;
+}
+
+.col-start-2{
+    grid-column: 2 / span 1;
+}
+
+.col-start-3{
+    grid-column: 3/ span 1;
+}
+
+.col-start-4{
+    grid-column: 4 / span 1;
+}
+
+.active-border{
+    transition: 400ms;
+}

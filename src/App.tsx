@@ -92,16 +92,18 @@ function App() {
   return (
     <div className="container m-auto font-inter">
       <NewHeader />
-      <Header
+      {/* <Header
         filterCountry={filterCountry}
         handleColorChange={handleColorChange}
         handleSorting={handleSorting}
         sorting={sorting}
         handleResetUsers={handleResetUsers}
         setFilterCountry={setFilterCountry}
-      />
+      /> */}
       <div className="relative">
         <MainContent
+          filterCountry={filterCountry}
+          setFilterCountry={setFilterCountry}
           users={filteredUsers}
           changeSorting={handleSorting}
           colorLines={colorLines}
@@ -123,13 +125,11 @@ function App() {
             <Loader />
           </div>
         )}
-        {
-          hasNextPage && (
+        <div className="flex items-center justify-center py-4">
+          {hasNextPage && (
             <Button label="Cargar mas" handleClick={() => fetchNextPage()} />
-          )
-          //TODO make a state for the buttons be clicked or unselected
-        }
-        MMain
+          )}
+        </div>
       </div>
     </div>
   );

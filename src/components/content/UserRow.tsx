@@ -18,8 +18,8 @@ const UserRow = ({
   image,
 }: Props) => {
   return (
-    <tr className="border-b border-b-lines">
-      <td className="p-4">
+    <tr className="border-b border-b-lines ">
+      <td className="p-4 pl-4">
         <img className="rounded-full w-20" src={image} alt={name} />
       </td>
       <td>

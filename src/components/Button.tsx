@@ -8,7 +8,7 @@ interface ButtonProps {
 const Button = ({label, handleClick, isActive = false}:ButtonProps) => {
   return (
     <button
-      className={` text-slate-900 ${isActive ? "bg-slate-200" : "bg-slate-400"} px-3 py-1 rounded-lg`} onClick=
+      className={` text-white bg-base  px-4 py-1 rounded-sm hover:-translate-y-1 transition-all hover:scale-125`} onClick=
       {handleClick}> <span>{label}</span>
 
     </button>

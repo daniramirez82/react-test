@@ -1,11 +1,13 @@
+import { MenuItem } from "../../types.d"
 
 interface Props {
-    item: {item: string, isSelected: boolean}
+    item: MenuItem
+    onClick: (menuItem:MenuItem)=> void
 }
-const BreadCrumsItem = ({item}: Props)=>{
+const BreadCrumsItem = ({item, onClick}: Props)=>{
 
     return (
-        <div className={ `flex items-center justify-center px-4 ${item.isSelected ? "border-b-2 border-b-lines " : ""}` }>
+        <div className={ `flex items-center justify-center px-4 cursor-pointer` } onClick={()=> onClick(item)} >
             <div className="p-2">{item.item}</div>
         </div>
     )

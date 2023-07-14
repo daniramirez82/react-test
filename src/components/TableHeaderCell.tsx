@@ -15,6 +15,7 @@ const TableHeaderCell = ({id, changeSort, isActive}: Props) => {
   const sortOrder = useSelector((state: RootState) => state.sortOrder);
   const dispatch = useDispatch();
 
+
   const handleCellClick = () => {
    showArrow.current = true;
     const newSortOrder = {
@@ -26,8 +27,8 @@ const TableHeaderCell = ({id, changeSort, isActive}: Props) => {
   };
 
   return (
-    <div className={`cursor-pointer flex ${isActive ===id ? "bg-orange-800":""}`} onClick={handleCellClick}>
-      <span>{id}</span>
+    <div className={`cursor-pointer flex ${isActive ===id ? "bg-orange-800":""} items-center`} onClick={handleCellClick}>
+      <span>{id[0].toUpperCase() + id.slice(1)}</span>
       <div className={`p-1`}>
         {showArrow.current && isActive === id && (
           <div className={`${!sortOrder[id] ? "bg-red-600 rotate-180" : ""}`}>

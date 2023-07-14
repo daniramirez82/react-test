@@ -8,9 +8,11 @@ interface Props {
   users: User[];
   changeSorting: (sort: SortBy) => void;
   colorLines: boolean;
+  setFilterCountry: (value: string) => void;
+  filterCountry: string;
 }
 
-const MainContent = ({ users, changeSorting }: Props) => {
+const MainContent = ({ users, changeSorting, setFilterCountry, filterCountry }: Props) => {
   const [sortBy, setSortBy] = useState<SortBy>(SortBy.NONE);
   const handleClick = (sort: SortBy) => {
     changeSorting(sort);
@@ -20,8 +22,8 @@ const MainContent = ({ users, changeSorting }: Props) => {
   return (
     <div className="w-full">
       <div className="text-3xl font-medium pt-16 pb-8">Users</div>
-      <BreadCrums />
-      <table className="w-full bg-bg-light rounded-md mt-12">
+      <BreadCrums filterCountry={filterCountry} setFilterCountry={setFilterCountry} />
+      <table className="w-full bg-bg-light rounded-md mt-12 overflow-hidden">
         <thead>
           <tr className="bg-base text-white h-12 rounded-md">
             <td width="90px"></td>

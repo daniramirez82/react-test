@@ -104,9 +104,21 @@ declare global {
     LAST = 'last',
     COUNTRY = 'country',
   }
+
+  export enum Menu {
+    HOME = 'home',
+    NOTIFICATION = 'notification',
+    MESSAGES = 'messages',
+    MORE = 'more'
+  }
   
   export interface Picture {
     large: string
     medium: string
     thumbnail: string
+  }
+
+  export interface MenuItem {
+    item: string
+    pos: number
   }
