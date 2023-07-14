@@ -2,7 +2,6 @@ import MenuIcon from "./MenuIcon";
 
 interface Props {
   name: string;
-  isSelected: boolean;
   onClick: (name:string) => void;
   menuSelection: string;
 }
