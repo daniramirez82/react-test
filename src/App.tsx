@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from "react-redux";
 import type { RootState } from "./store";
 import NewHeader from "./components/NewHeader";
 import MainContent from "./components/content/MainContent";
+import { useDarkMode } from "./darkModeContex";
 
 function App() {
   const [colorLines, setColorLines] = useState(false);
@@ -26,6 +27,7 @@ function App() {
     isFetchingNextPage,
     status,
   } = useUsers();
+  const {isDarkMode} = useDarkMode()
   const sortOrder = useSelector((state: RootState) => state.sortOrder);
 
   const originalUsers = useRef(users);
@@ -90,7 +92,7 @@ function App() {
   })();
 
   return (
-    <div className="container m-auto font-inter">
+    <div className={`container m-auto font-inter ${isDarkMode ? "dark" : ""}`}>
       <NewHeader />
       {/* <Header
         filterCountry={filterCountry}

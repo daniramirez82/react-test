@@ -5,14 +5,21 @@ const NavBar = () => {
   const items = ["home", "notification", "messages", "more"];
   const [menuSelection, setMenuSelection] = useState("home");
 
-  const handleClick = (name:string)=>{
-    setMenuSelection(name)
-  }
+  const handleClick = (name: string) => {
+    setMenuSelection(name);
+  };
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center dark:bg-optional">
       {items.map((item) => {
-        return <NavbarButton menuSelection = {menuSelection} name={item} key={item} onClick = {handleClick} />;
+        return (
+          <NavbarButton
+            menuSelection={menuSelection}
+            name={item}
+            key={item}
+            onClick={handleClick}
+          />
+        );
       })}
     </div>
   );

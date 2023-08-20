@@ -5,12 +5,15 @@ import "./index.css";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import store from "./store";
+import { DarkModeProvider } from "./darkModeContex";
 
 const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <Provider store={store}>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <DarkModeProvider>
+        <App />
+      </DarkModeProvider>
     </QueryClientProvider>
   </Provider>
 );
