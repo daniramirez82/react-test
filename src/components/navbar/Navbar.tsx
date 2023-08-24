@@ -10,7 +10,7 @@ const NavBar = () => {
   };
 
   return (
-    <div className="flex items-center dark:bg-optional">
+    <div className="flex items-center dark:bg-base">
       {items.map((item) => {
         return (
           <NavbarButton

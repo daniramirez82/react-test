@@ -7,6 +7,7 @@ interface Props {
   lastName: string;
   country: string;
   image: string;
+  isDarkMode: boolean;
 }
 
 const UserRow = ({
@@ -16,9 +17,10 @@ const UserRow = ({
   lastName,
   country,
   image,
+  isDarkMode
 }: Props) => {
   return (
-    <tr className="border-b border-b-lines ">
+    <tr className="border-b border-b-lines dark:text-white dark:bg-secondary">
       <td className="p-4 pl-4">
         <img className="rounded-full w-20" src={image} alt={name} />
       </td>
@@ -28,7 +30,7 @@ const UserRow = ({
             <span className="pr-6 font-semibold tracking-tight">{userName}</span>
             <img
               className="absolute right-0 top-0"
-              src="/icons/verified.svg"
+              src={`${ isDarkMode ? "/icons/verified-white.svg" : "/icons/verified.svg"}`}
               alt="verified"
             />
           </div>

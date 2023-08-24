@@ -102,7 +102,7 @@ function App() {
         handleResetUsers={handleResetUsers}
         setFilterCountry={setFilterCountry}
       /> */}
-      <div className="relative">
+      <div className="relative dark:bg-base">
         <MainContent
           filterCountry={filterCountry}
           setFilterCountry={setFilterCountry}

@@ -10,7 +10,7 @@ const ToogleSwitch = () => {
   }
 
   return (
-    <div>
+    <div className="dark:bg-base w-full">
       <label htmlFor="switch"> Dark Mode: </label>
       <input id="switch" type="checkbox" onChange={handleChange} />
     </div>

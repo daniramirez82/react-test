@@ -14,8 +14,6 @@ const BreadCrums = ({ setFilterCountry, filterCountry }: Props) => {
 
   const [menuSelected, setMenuSelected] = useState<MenuItem>(initialState);
 
-  console.log(menuSelected)
-
   const items: MenuItem[] = [
     { item: "Personal", pos: 1 },
     { item: "Members", pos: 2 },
@@ -36,7 +34,7 @@ const BreadCrums = ({ setFilterCountry, filterCountry }: Props) => {
 
       <div className="relative">
         <input
-          className="bg-bg-light pl-12 py-2 text-text-secondary rounded-sm"
+          className="bg-bg-light pl-12 py-2 text-text-secondary rounded-sm dark:bg-optional"
           type="text"
           placeholder="Spain, Poland ..."
           value={filterCountry}

@@ -3,6 +3,7 @@ import UserRow from "./UserRow";
 import { SortBy, User } from "../../types.d";
 import TableHeaderCell from "../TableHeaderCell";
 import { useState } from "react";
+import { useDarkMode } from "../../darkModeContex";
 
 interface Props {
   users: User[];
@@ -14,14 +15,15 @@ interface Props {
 
 const MainContent = ({ users, changeSorting, setFilterCountry, filterCountry }: Props) => {
   const [sortBy, setSortBy] = useState<SortBy>(SortBy.NONE);
+  const{isDarkMode} = useDarkMode();
   const handleClick = (sort: SortBy) => {
     changeSorting(sort);
     setSortBy(sort);
   };
 
   return (
-    <div className="w-full">
-      <div className="text-3xl font-medium pt-16 pb-8">Users</div>
+    <div className="w-full px-8">
+      <div className="text-3xl font-medium pt-16 pb-8 dark:text-white">Users</div>
       <BreadCrums filterCountry={filterCountry} setFilterCountry={setFilterCountry} />
       <table className="w-full bg-bg-light rounded-md mt-12 overflow-hidden">
         <thead>
@@ -57,6 +59,7 @@ const MainContent = ({ users, changeSorting, setFilterCountry, filterCountry }: 
         <tbody>
           {users.map((user) => {
             return (
+
               <UserRow
                 image={user.picture.medium}
                 country={user.location.country}
@@ -64,7 +67,9 @@ const MainContent = ({ users, changeSorting, setFilterCountry, filterCountry }: 
                 lastName={user.name.last}
                 name={user.name.first}
                 userName={user.login.username}
-              />
+                isDarkMode ={isDarkMode}
+                key={user.id.value}
+                />
             );
           })}
         </tbody>
