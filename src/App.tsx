@@ -94,14 +94,6 @@ function App() {
   return (
     <div className={`container m-auto font-inter ${isDarkMode ? "dark" : ""}`}>
       <NewHeader />
-      {/* <Header
-        filterCountry={filterCountry}
-        handleColorChange={handleColorChange}
-        handleSorting={handleSorting}
-        sorting={sorting}
-        handleResetUsers={handleResetUsers}
-        setFilterCountry={setFilterCountry}
-      /> */}
       <div className="relative dark:bg-base">
         <MainContent
           filterCountry={filterCountry}
@@ -110,12 +102,6 @@ function App() {
           changeSorting={handleSorting}
           colorLines={colorLines}
         />
-        {/* <UserList
-          changeSorting={handleSorting}
-          users={filteredUsers}
-          colorLines={colorLines}
-          handleEraseLine={handleEraseLine}
-        /> */}
         {isLoading && (
           <div className="h-40 w-full p-9 flex justify-center items-center rounded-lg text-slate-950">
             <Loader />

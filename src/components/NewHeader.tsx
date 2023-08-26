@@ -12,7 +12,7 @@ const NewHeader = () => {
         </div>
         <NavBar />
       </div>
-      <div className="flex justify-end w-full">
+      <div className="flex justify-end w-ful dark:bg-base">
         <ToogleSwitch/>
       </div>
     </div>
