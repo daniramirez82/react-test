@@ -17,7 +17,7 @@ const UserRow = ({
   lastName,
   country,
   image,
-  isDarkMode
+  isDarkMode,
 }: Props) => {
   return (
     <tr className="border-b border-b-lines dark:text-white dark:bg-secondary">

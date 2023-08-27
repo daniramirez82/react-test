@@ -82,7 +82,7 @@ function App() {
   );
 
   const filteredUsers = (() => {
-    return filterCountry != "" && filterCountry.length > 0
+    return filterCountry != "" && filterCountry.length > 1
       ? sortedUsers.filter((user) => {
           return user.location.country
             .toLocaleLowerCase()

@@ -68,7 +68,6 @@ const MainContent = ({ users, changeSorting, setFilterCountry, filterCountry }: 
                 name={user.name.first}
                 userName={user.login.username}
                 isDarkMode ={isDarkMode}
-                key={user.id.value}
                 />
             );
           })}
